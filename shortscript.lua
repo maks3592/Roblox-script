@@ -1,4 +1,4 @@
 -- By @maks3592 from GitHub. Thanks for using :)
 -- Use at your own risk.
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/maks3592/repository/main/script.lua", true))()
+loadstring(game:HttpGet("https://github.com/maks3592/Roblox-script/blob/main/script.lua?raw=true", true))()
