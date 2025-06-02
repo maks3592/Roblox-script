@@ -1,5 +1,5 @@
 # 🚀 Roblox Script for 3-2-1 Blast Off Simulator!  
-**Author:** maks3592  
+**Author:** [maks3592](https://github.com/maks3592)  
 **License:** MIT License  
 
 ## 📌 Description  
