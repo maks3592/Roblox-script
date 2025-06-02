@@ -1,6 +1,6 @@
-# 🚀 Roblox Script for 3-2-1 Blast Off Simulator!  
+# 🚀 Roblox Script for [3-2-1 Blast Off Simulator!](https://www.roblox.com/games/5256165620)
 **Author:** [maks3592](https://github.com/maks3592)  
-**License:** MIT License  
+**License:** [MIT License](https://en.wikipedia.org/wiki/MIT_License)  
 
 ## 📌 Description  
 This script enhances gameplay in **Roblox** by allowing instant teleportation to chests, making loot collection faster and more efficient.  
