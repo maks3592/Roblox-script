@@ -4,6 +4,7 @@ body {
     background-color: #1a1a1a;
     color: white;
     overflow: hidden;
+    padding: 20px;
 }
 
 #background {
@@ -14,4 +15,19 @@ body {
     height: 100vh;
     background: radial-gradient(circle at center, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.8));
     pointer-events: none;
+}
+
+.download-btn {
+    background-color: #008CBA;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.download-btn:hover {
+    background-color: #005f73;
 }
