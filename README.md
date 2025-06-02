@@ -15,7 +15,7 @@ This script enhances gameplay in **Roblox** by allowing instant teleportation to
 ## 📥 How to Download & Install  
 
 ### 🔹 Method 1: Download from GitHub  
-1️⃣ Go to the **Releases** section of this repository.  
+1️⃣ Go to the [**Releases**](https://github.com/maks3592/Roblox-script/releases) section of this repository.  
 2️⃣ Find the latest version (`v2.0` or newer).  
 3️⃣ **Download `script.lua`** directly from the release page.  
 4️⃣ Open **Roblox executor**, load the script, and execute it.  
