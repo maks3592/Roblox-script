@@ -21,13 +21,8 @@ This script enhances gameplay in **Roblox** by allowing instant teleportation to
 3️⃣ **Download `script.lua`** directly from the release page.  
 4️⃣ Open **Roblox executor**, load the script, and execute it.  
 
-### 🔹 Method 2: Install via Website  
-1️⃣ Go to the [DOWNLOAD SCRIPT FROM MY SITE](https://maks3592.github.io/Roblox-script).  
-2️⃣ Click the **"Download Script"** button.  
-3️⃣ Open **Roblox executor**.  
-4️⃣ Load and execute the downloaded script.  
 
-## 📝 How to Use RAW Script  
+### 🔹 Method 2: 📝 How to Use RAW Script  
 
 1️⃣ **Open the RAW script link:**  
    👉 [RAW version of script](https://raw.githubusercontent.com/maks3592/Roblox-script/refs/heads/main/shortscript.lua)  
