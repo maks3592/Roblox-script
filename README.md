@@ -1,4 +1,4 @@
-# 🚀 Roblox Script [3-2-1 Blast Off Simulator!](https://www.roblox.com/games/5256165620)
+# 🚀 Roblox Script for game [3-2-1 Blast Off Simulator!](https://www.roblox.com/games/5256165620)
 
 **Author**: maks3592  
 **License**: MIT License  
