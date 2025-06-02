@@ -10,6 +10,45 @@ body {
     background-attachment: fixed;
 }
 
+.video-background {
+    position: relative;
+    width: 560px;
+    height: 315px;
+    margin: 20px auto;
+    z-index: 1;
+}
+
+.video-background video {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+h1 {
+    font-size: 48px;
+    font-weight: bold;
+    text-transform: uppercase;
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00);
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: glow 2s infinite alternate, fadeIn 1.5s ease-in-out;
+}
+
+p.animated-text {
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: uppercase;
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00);
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: fadeInText 1.5s ease-in-out, glowText 2s infinite alternate;
+}
+
+.emoji {
+    color: white;
+    text-shadow: none;
+}
+
 .download-btn {
     background-color: #008CBA;
     color: white;
@@ -19,18 +58,20 @@ body {
     cursor: pointer;
     font-size: 18px;
     margin-top: 20px;
+    transition: transform 0.3s ease-in-out, background-color 0.3s;
 }
 
 .download-btn:hover {
     background-color: #005f73;
+    transform: scale(1.1);
 }
 
-#blackhole {
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    background: radial-gradient(circle, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 70%);
-    border-radius: 50%;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-    pointer-events: none;
+@keyframes fadeInText {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glowText {
+    0% { text-shadow: 0 0 20px rgba(255, 165, 0, 1); }
+    100% { text-shadow: 0 0 30px rgba(255, 140, 0, 1); }
 }
