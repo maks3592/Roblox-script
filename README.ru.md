@@ -1,7 +1,7 @@
 ![Скриншот скрипта](image.png)
 # 🚀 Скрипт Roblox для [3-2-1 Blast Off Simulator!](https://www.roblox.com/games/5256165620)
-[![Downloads](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fabacus.jasoncameron.dev%2Fget%2Fmaks3592-roblox-script%2Fdownloads&query=%24.value&label=скачиваний%20с%20сайта&color=2ea44f&logo=roblox)](https://maks3592.github.io/Roblox-script/)
-[![Copies](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fabacus.jasoncameron.dev%2Fget%2Fmaks3592-roblox-script%2Fcopies&query=%24.value&label=копирований%20кода&color=0366d6)](https://maks3592.github.io/Roblox-script/)
+[![Downloads](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fabacus.jasoncameron.dev%2Fget%2Fmaks3592-roblox-script%2Fdownloads&query=%24.value&cacheSeconds=300&label=скачиваний%20с%20сайта&color=2ea44f&logo=roblox)](https://maks3592.github.io/Roblox-script/)
+[![Copies](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fabacus.jasoncameron.dev%2Fget%2Fmaks3592-roblox-script%2Fcopies&query=%24.value&cacheSeconds=300&label=копирований%20кода&color=0366d6)](https://maks3592.github.io/Roblox-script/)
 
 🌐 [English](README.md) | **Русский**
 
