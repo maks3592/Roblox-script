@@ -8,42 +8,56 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="background"></div>
+    <div id="nebula"></div>
+    <canvas id="space" aria-hidden="true"></canvas>
 
     <main>
-        <h1 class="animated-text">Roblox Script — Teleport to Chests</h1>
-        <p class="subtitle">Скачай скрипт и используй его на максимум <span class="emoji">🚀</span></p>
+        <header class="hero">
+            <div class="rocket" aria-hidden="true">🚀</div>
+            <h1>Roblox Script</h1>
+            <h2 class="tagline">Teleport to Chests</h2>
+            <p class="subtitle">Скачай скрипт и используй его на максимум</p>
+        </header>
 
         <section class="card" id="download-container">
-            <button id="downloadButton" class="download-btn" type="button">Скачать script.lua</button>
-            <div id="progress-container"><div id="progress-bar"></div></div>
-            <div id="checkmark">✔</div>
-            <div id="smiley">😉</div>
+            <button id="downloadButton" class="download-btn" type="button">
+                <span class="btn-label">Скачать script.lua</span>
+            </button>
 
-            <div class="or">или скопируй короткий загрузчик</div>
+            <div id="progress-container" aria-live="polite">
+                <div id="progress-track"><div id="progress-bar"></div></div>
+                <div id="progress-text">0%</div>
+            </div>
+            <div id="done">
+                <span id="checkmark">✔</span>
+                <span id="smiley">😉</span>
+            </div>
+
+            <div class="or"><span>или скопируй короткий загрузчик</span></div>
             <pre id="loader"><code>loadstring(game:HttpGet("https://raw.githubusercontent.com/maks3592/Roblox-script/main/script.lua", true))()</code></pre>
             <button id="copyButton" class="download-btn secondary" type="button">Скопировать код</button>
-            <p class="hint" id="copy-status" aria-live="polite"></p>
         </section>
 
-        <section class="card">
-            <h2>Что умеет скрипт</h2>
-            <ul class="features">
-                <li>⚡ Мгновенная телепортация к сундукам</li>
-                <li>🖥️ Удобное меню (открыть/скрыть — клавиша <kbd>End</kbd>)</li>
-                <li>🧩 Работает с популярными executor'ами</li>
-                <li>🛑 Для некоторых сундуков нужны квесты</li>
-            </ul>
-        </section>
+        <div class="grid">
+            <section class="card">
+                <h3>Что умеет скрипт</h3>
+                <ul class="features">
+                    <li>⚡ Мгновенная телепортация к сундукам</li>
+                    <li>🖥️ Удобное меню — открыть/скрыть клавишей <kbd>End</kbd></li>
+                    <li>🧩 Работает с популярными executor'ами</li>
+                    <li>🛑 Для некоторых сундуков нужны квесты</li>
+                </ul>
+            </section>
 
-        <section class="card">
-            <h2>Как пользоваться</h2>
-            <ol class="steps">
-                <li>Нажми «Скачать script.lua» или скопируй загрузчик.</li>
-                <li>Открой Roblox в игре <a href="https://www.roblox.com/games/5256165620" target="_blank" rel="noopener">3-2-1 Blast Off Simulator!</a></li>
-                <li>Вставь код в executor и нажми Execute.</li>
-            </ol>
-        </section>
+            <section class="card">
+                <h3>Как пользоваться</h3>
+                <ol class="steps">
+                    <li>Нажми «Скачать script.lua» или скопируй загрузчик.</li>
+                    <li>Зайди в <a href="https://www.roblox.com/games/5256165620" target="_blank" rel="noopener">3-2-1 Blast Off Simulator!</a></li>
+                    <li>Вставь код в executor и нажми Execute.</li>
+                </ol>
+            </section>
+        </div>
 
         <footer>
             <a href="https://github.com/maks3592/Roblox-script" target="_blank" rel="noopener">GitHub</a> ·
@@ -54,7 +68,7 @@
     </main>
 
     <div id="message-box" role="dialog" aria-modal="true">
-        <p>Спасибо за то, что пользуетесь моим скриптом!</p>
+        <p id="message-text"></p>
         <button id="close-message" type="button" aria-label="Закрыть">✖</button>
     </div>
 
