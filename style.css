@@ -256,5 +256,30 @@ footer { margin-top: 36px; opacity: 0.9; }
 @keyframes pop { from { opacity: 0; transform: translate(-50%, -45%) scale(0.9); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
 
 @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation: none !important; transition: none !important; }
+    /* фон остаётся живым, но медленнее; остальные эффекты отключаем */
+    #nebula { animation-duration: 90s; }
+    .rocket, h1, .download-btn::after, #smiley, .card { animation: none !important; }
 }
+
+/* ---------- переключатель языка ---------- */
+.lang-btn {
+    position: fixed;
+    top: 14px;
+    right: 14px;
+    z-index: 5;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    color: #fff;
+    background: var(--card);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.25s, border-color 0.25s;
+}
+.lang-btn:hover { transform: scale(1.06); border-color: var(--accent); }

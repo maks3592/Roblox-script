@@ -1,27 +1,36 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Скрипт для 3-2-1 Blast Off Simulator: мгновенная телепортация к сундукам.">
+    <meta name="description" content="Script for 3-2-1 Blast Off Simulator: instant teleportation to chests.">
     <title>Roblox Script - Teleport to Chests</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
     <div id="nebula"></div>
     <canvas id="space" aria-hidden="true"></canvas>
+
+    <button id="langButton" class="lang-btn" type="button" aria-label="Change language">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M2 12h20"></path>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+        </svg>
+        <span id="langLabel">RU</span>
+    </button>
 
     <main>
         <header class="hero">
             <div class="rocket" aria-hidden="true">🚀</div>
             <h1>Roblox Script</h1>
             <h2 class="tagline">Teleport to Chests</h2>
-            <p class="subtitle">Скачай скрипт и используй его на максимум</p>
+            <p class="subtitle" data-i18n="subtitle"></p>
         </header>
 
         <section class="card" id="download-container">
             <button id="downloadButton" class="download-btn" type="button">
-                <span class="btn-label">Скачать script.lua</span>
+                <span class="btn-label" data-i18n="download"></span>
             </button>
 
             <div id="progress-container" aria-live="polite">
@@ -33,28 +42,28 @@
                 <span id="smiley">😉</span>
             </div>
 
-            <div class="or"><span>или скопируй короткий загрузчик</span></div>
+            <div class="or"><span data-i18n="or"></span></div>
             <pre id="loader"><code>loadstring(game:HttpGet("https://raw.githubusercontent.com/maks3592/Roblox-script/main/script.lua", true))()</code></pre>
-            <button id="copyButton" class="download-btn secondary" type="button">Скопировать код</button>
+            <button id="copyButton" class="download-btn secondary" type="button" data-i18n="copy"></button>
         </section>
 
         <div class="grid">
             <section class="card">
-                <h3>Что умеет скрипт</h3>
+                <h3 data-i18n="featuresTitle"></h3>
                 <ul class="features">
-                    <li>⚡ Мгновенная телепортация к сундукам</li>
-                    <li>🖥️ Удобное меню — открыть/скрыть клавишей <kbd>End</kbd></li>
-                    <li>🧩 Работает с популярными executor'ами</li>
-                    <li>🛑 Для некоторых сундуков нужны квесты</li>
+                    <li data-i18n="f1"></li>
+                    <li data-i18n="f2"></li>
+                    <li data-i18n="f3"></li>
+                    <li data-i18n="f4"></li>
                 </ul>
             </section>
 
             <section class="card">
-                <h3>Как пользоваться</h3>
+                <h3 data-i18n="howTitle"></h3>
                 <ol class="steps">
-                    <li>Нажми «Скачать script.lua» или скопируй загрузчик.</li>
-                    <li>Зайди в <a href="https://www.roblox.com/games/5256165620" target="_blank" rel="noopener">3-2-1 Blast Off Simulator!</a></li>
-                    <li>Вставь код в executor и нажми Execute.</li>
+                    <li data-i18n="s1"></li>
+                    <li data-i18n="s2"></li>
+                    <li data-i18n="s3"></li>
                 </ol>
             </section>
         </div>
@@ -62,16 +71,16 @@
         <footer>
             <a href="https://github.com/maks3592/Roblox-script" target="_blank" rel="noopener">GitHub</a> ·
             <a href="https://github.com/maks3592/Roblox-script/releases" target="_blank" rel="noopener">Releases</a> ·
-            Автор: <a href="https://github.com/maks3592" target="_blank" rel="noopener">maks3592</a>
-            <p class="hint">Используй на свой риск.</p>
+            <span data-i18n="author"></span> <a href="https://github.com/maks3592" target="_blank" rel="noopener">maks3592</a>
+            <p class="hint" data-i18n="risk"></p>
         </footer>
     </main>
 
     <div id="message-box" role="dialog" aria-modal="true">
         <p id="message-text"></p>
-        <button id="close-message" type="button" aria-label="Закрыть">✖</button>
+        <button id="close-message" type="button" aria-label="Close">✖</button>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=3"></script>
 </body>
 </html>

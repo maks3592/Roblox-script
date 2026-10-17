@@ -1,6 +1,68 @@
 (function () {
     var RAW_URL = 'https://raw.githubusercontent.com/maks3592/Roblox-script/main/script.lua';
 
+    /* ================= переводы ================= */
+    var I18N = {
+        en: {
+            subtitle: 'Download the script and make the most of it',
+            download: 'Download script.lua',
+            downloading: 'Downloading…',
+            or: 'or copy the short loader',
+            copy: 'Copy code',
+            featuresTitle: 'What it does',
+            f1: '⚡ Instant teleportation to chests',
+            f2: '🖥️ Handy menu — show/hide with the <kbd>End</kbd> key',
+            f3: '🧩 Works with popular executors',
+            f4: '🛑 Some chests require quests',
+            howTitle: 'How to use',
+            s1: 'Press “Download script.lua” or copy the loader.',
+            s2: 'Join <a href="https://www.roblox.com/games/5256165620" target="_blank" rel="noopener">3-2-1 Blast Off Simulator!</a>',
+            s3: 'Paste the code into your executor and press Execute.',
+            author: 'Author:',
+            risk: 'Use at your own risk.',
+            thanksDownload: 'Thank you for using my script! 🚀',
+            thanksCopy: 'Copied! Thank you for using my script! 💙',
+            copyFail: 'Could not copy automatically — select the code and copy it manually (Ctrl + C).',
+            langAria: 'Switch to Russian',
+            langLabel: 'RU',
+            close: 'Close'
+        },
+        ru: {
+            subtitle: 'Скачай скрипт и используй его на максимум',
+            download: 'Скачать script.lua',
+            downloading: 'Скачиваем…',
+            or: 'или скопируй короткий загрузчик',
+            copy: 'Скопировать код',
+            featuresTitle: 'Что умеет скрипт',
+            f1: '⚡ Мгновенная телепортация к сундукам',
+            f2: '🖥️ Удобное меню — открыть/скрыть клавишей <kbd>End</kbd>',
+            f3: '🧩 Работает с популярными executor\'ами',
+            f4: '🛑 Для некоторых сундуков нужны квесты',
+            howTitle: 'Как пользоваться',
+            s1: 'Нажми «Скачать script.lua» или скопируй загрузчик.',
+            s2: 'Зайди в <a href="https://www.roblox.com/games/5256165620" target="_blank" rel="noopener">3-2-1 Blast Off Simulator!</a>',
+            s3: 'Вставь код в executor и нажми Execute.',
+            author: 'Автор:',
+            risk: 'Используй на свой риск.',
+            thanksDownload: 'Спасибо за то, что пользуетесь моим скриптом! 🚀',
+            thanksCopy: 'Скопировано! Спасибо, что пользуетесь моим скриптом! 💙',
+            copyFail: 'Не удалось скопировать автоматически — выдели код и скопируй вручную (Ctrl + C).',
+            langAria: 'Switch to English',
+            langLabel: 'EN',
+            close: 'Закрыть'
+        }
+    };
+
+    var lang = 'en';
+    try {
+        var saved = localStorage.getItem('lang');
+        if (saved === 'ru' || saved === 'en') lang = saved;
+    } catch (e) {}
+    var q = /[?&]lang=(ru|en)/.exec(location.search);
+    if (q) lang = q[1];
+
+    function t(key) { return I18N[lang][key]; }
+
     var btn = document.getElementById('downloadButton');
     var label = btn.querySelector('.btn-label');
     var bar = document.getElementById('progress-bar');
@@ -12,10 +74,35 @@
     var closeBtn = document.getElementById('close-message');
     var copyBtn = document.getElementById('copyButton');
     var loader = document.getElementById('loader');
+    var langBtn = document.getElementById('langButton');
+    var langLabel = document.getElementById('langLabel');
+    var downloading = false;
+    var lastMessageKey = null;
 
-    var reduceMotion = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function applyLang() {
+        document.documentElement.lang = lang;
+        var nodes = document.querySelectorAll('[data-i18n]');
+        for (var i = 0; i < nodes.length; i++) {
+            var key = nodes[i].getAttribute('data-i18n');
+            if (key === 'download' && downloading) continue;
+            nodes[i].innerHTML = t(key);
+        }
+        langLabel.textContent = t('langLabel');
+        langBtn.setAttribute('aria-label', t('langAria'));
+        langBtn.title = t('langAria');
+        closeBtn.setAttribute('aria-label', t('close'));
+        if (downloading) label.textContent = t('downloading');
+        if (lastMessageKey && box.classList.contains('show')) boxText.textContent = t(lastMessageKey);
+    }
+
+    langBtn.addEventListener('click', function () {
+        lang = lang === 'en' ? 'ru' : 'en';
+        try { localStorage.setItem('lang', lang); } catch (e) {}
+        applyLang();
+    });
 
     /* ================= анимированный космос ================= */
+    var reduceMotion = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
     var canvas = document.getElementById('space');
     var ctx = canvas.getContext('2d');
     var stars = [], shooting = [], W = 0, H = 0, dpr = 1;
@@ -33,8 +120,8 @@
             stars.push({
                 x: Math.random() * W,
                 y: Math.random() * H,
-                z: Math.random() * 0.9 + 0.1,        // глубина: ближе = крупнее и быстрее
-                p: Math.random() * Math.PI * 2       // фаза мерцания
+                z: Math.random() * 0.9 + 0.1,
+                p: Math.random() * Math.PI * 2
             });
         }
     }
@@ -50,16 +137,16 @@
     }
 
     var last = 0, nextShot = 1500;
-    function frame(t) {
-        var dt = Math.min(t - last, 50);
-        last = t;
+    function frame(ts) {
+        var dt = Math.min(ts - last, 50) * (reduceMotion ? 0.4 : 1);
+        last = ts;
         ctx.clearRect(0, 0, W, H);
 
         for (var i = 0; i < stars.length; i++) {
             var s = stars[i];
             s.y += s.z * 0.35 * (dt / 16);
             if (s.y > H + 2) { s.y = -2; s.x = Math.random() * W; }
-            var tw = 0.55 + 0.45 * Math.sin(t / 600 + s.p);
+            var tw = 0.55 + 0.45 * Math.sin(ts / 600 + s.p);
             ctx.globalAlpha = tw * (0.4 + s.z * 0.6);
             ctx.fillStyle = '#fff';
             ctx.beginPath();
@@ -93,16 +180,7 @@
 
     resize();
     window.addEventListener('resize', resize);
-    if (reduceMotion) {
-        // статичные звёзды без движения
-        stars.forEach(function (s) {
-            ctx.globalAlpha = 0.4 + s.z * 0.6;
-            ctx.fillStyle = '#fff';
-            ctx.beginPath(); ctx.arc(s.x, s.y, s.z * 1.5, 0, 6.2832); ctx.fill();
-        });
-    } else {
-        requestAnimationFrame(frame);
-    }
+    requestAnimationFrame(frame);
 
     /* ================= скачивание ================= */
     function rand(min, max) { return min + Math.random() * (max - min); }
@@ -130,54 +208,53 @@
         var value = 0;
         (function step() {
             var elapsed = performance.now() - start;
-            var target = Math.min(100, (elapsed / totalMs) * 100);
-            if (target < 100) {
-                // иногда «подвисаем», иногда прыгаем вперёд
-                var r = Math.random();
-                if (r < 0.12) target = value;
-                else if (r > 0.93) target = Math.min(99, target + rand(3, 9));
-                value = Math.max(value, Math.min(99, target));
-                setProgress(value);
-                setTimeout(step, rand(60, 220));
-            } else {
-                setProgress(100);
-                onDone();
-            }
+            if (elapsed >= totalMs) { setProgress(100); onDone(); return; }
+            var target = (elapsed / totalMs) * 100;
+            var r = Math.random();
+            if (r < 0.12) target = value;                                  // подвисли
+            else if (r > 0.93) target = target + rand(3, 9);               // рывок вперёд
+            value = Math.max(value, Math.min(99, target));
+            setProgress(value);
+            setTimeout(step, rand(80, 260));
         })();
     }
 
-    function showMessage(text) {
-        boxText.textContent = text;
+    function showMessage(key) {
+        lastMessageKey = key;
+        boxText.textContent = t(key);
         box.classList.add('show');
     }
 
     btn.addEventListener('click', function () {
-        if (btn.disabled) return;
+        if (downloading) return;
+        downloading = true;
         btn.disabled = true;
-        label.textContent = 'Скачиваем…';
+        label.textContent = t('downloading');
         done.style.display = 'none';
         setProgress(0);
         progress.style.display = 'block';
 
-        var duration = rand(1500, 5500);
+        var duration = rand(2000, 9000);   // от 2 до 9 секунд
         var finishedFake = false, finishedFetch = false, text = null;
 
         function tryFinish() {
             if (!(finishedFake && finishedFetch)) return;
+            // файл сохраняется только когда полоса дошла до 100%
             if (text !== null) saveBlob(text);
-            else window.open(RAW_URL, '_blank', 'noopener'); // запасной вариант
+            else window.open(RAW_URL, '_blank', 'noopener');
             progress.style.display = 'none';
             done.style.display = 'block';
-            label.textContent = 'Скачать script.lua';
+            downloading = false;
+            label.textContent = t('download');
             btn.disabled = false;
-            showMessage('Спасибо за то, что пользуетесь моим скриптом! 🚀');
+            showMessage('thanksDownload');
         }
 
         fakeProgress(duration, function () { finishedFake = true; tryFinish(); });
 
         fetch(RAW_URL, { cache: 'no-store' })
             .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.text(); })
-            .then(function (t) { text = t; })
+            .then(function (body) { text = body; })
             .catch(function () { text = null; })
             .then(function () { finishedFetch = true; tryFinish(); });
     });
@@ -198,11 +275,7 @@
 
     copyBtn.addEventListener('click', function () {
         var text = loader.textContent.trim();
-        var onResult = function (ok) {
-            showMessage(ok
-                ? 'Скопировано! Спасибо, что пользуетесь моим скриптом! 💙'
-                : 'Не удалось скопировать автоматически — выдели код и скопируй вручную (Ctrl + C).');
-        };
+        var onResult = function (ok) { showMessage(ok ? 'thanksCopy' : 'copyFail'); };
         if (navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard.writeText(text).then(
                 function () { onResult(true); },
@@ -217,4 +290,6 @@
     function hideMessage() { box.classList.remove('show'); }
     closeBtn.addEventListener('click', hideMessage);
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') hideMessage(); });
+
+    applyLang();
 })();
