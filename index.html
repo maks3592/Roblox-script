@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Script for 3-2-1 Blast Off Simulator: instant teleportation to chests.">
     <title>Roblox Script - Teleport to Chests</title>
-    <link rel="stylesheet" href="style.css?v=3">
+    <link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
     <div id="nebula"></div>
@@ -47,6 +47,11 @@
             <button id="copyButton" class="download-btn secondary" type="button" data-i18n="copy"></button>
         </section>
 
+        <p class="stats" aria-live="polite">
+            <span>📥 <b id="stat-downloads">–</b> <span data-i18n="statDownloads"></span></span>
+            <span>📋 <b id="stat-copies">–</b> <span data-i18n="statCopies"></span></span>
+        </p>
+
         <div class="grid">
             <section class="card">
                 <h3 data-i18n="featuresTitle"></h3>
@@ -81,6 +86,6 @@
         <button id="close-message" type="button" aria-label="Close">✖</button>
     </div>
 
-    <script src="script.js?v=3"></script>
+    <script src="script.js?v=4"></script>
 </body>
 </html>

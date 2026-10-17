@@ -283,3 +283,14 @@ footer { margin-top: 36px; opacity: 0.9; }
     transition: transform 0.25s, border-color 0.25s;
 }
 .lang-btn:hover { transform: scale(1.06); border-color: var(--accent); }
+
+/* ---------- счётчики ---------- */
+.stats { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin: 4px 0 18px; }
+.stats > span {
+    padding: 6px 14px;
+    font-size: 14px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+}
+.stats b { color: var(--accent); font-variant-numeric: tabular-nums; }

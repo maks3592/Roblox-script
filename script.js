@@ -20,6 +20,8 @@
             s3: 'Paste the code into your executor and press Execute.',
             author: 'Author:',
             risk: 'Use at your own risk.',
+            statDownloads: 'downloads',
+            statCopies: 'copies',
             thanksDownload: 'Thank you for using my script! 🚀',
             thanksCopy: 'Copied! Thank you for using my script! 💙',
             copyFail: 'Could not copy automatically — select the code and copy it manually (Ctrl + C).',
@@ -44,6 +46,8 @@
             s3: 'Вставь код в executor и нажми Execute.',
             author: 'Автор:',
             risk: 'Используй на свой риск.',
+            statDownloads: 'скачиваний',
+            statCopies: 'копирований',
             thanksDownload: 'Спасибо за то, что пользуетесь моим скриптом! 🚀',
             thanksCopy: 'Скопировано! Спасибо, что пользуетесь моим скриптом! 💙',
             copyFail: 'Не удалось скопировать автоматически — выдели код и скопируй вручную (Ctrl + C).',
@@ -182,6 +186,30 @@
     window.addEventListener('resize', resize);
     requestAnimationFrame(frame);
 
+    /* ================= аналитика (счётчики abacus) ================= */
+    var STATS_API = 'https://abacus.jasoncameron.dev';
+    var STATS_NS = 'maks3592-roblox-script';
+
+    function showStat(id, value) {
+        var el = document.getElementById(id);
+        if (el && typeof value === 'number') el.textContent = value.toLocaleString(lang === 'ru' ? 'ru-RU' : 'en-US');
+    }
+    function loadStat(key, id) {
+        fetch(STATS_API + '/get/' + STATS_NS + '/' + key)
+            .then(function (r) { return r.json(); })
+            .then(function (d) { showStat(id, d.value); })
+            .catch(function () {});
+    }
+    // /hit увеличивает счётчик на 1 и возвращает новое значение
+    function hitStat(key, id) {
+        fetch(STATS_API + '/hit/' + STATS_NS + '/' + key)
+            .then(function (r) { return r.json(); })
+            .then(function (d) { showStat(id, d.value); })
+            .catch(function () {});
+    }
+    loadStat('downloads', 'stat-downloads');
+    loadStat('copies', 'stat-copies');
+
     /* ================= скачивание ================= */
     function rand(min, max) { return min + Math.random() * (max - min); }
 
@@ -247,6 +275,7 @@
             downloading = false;
             label.textContent = t('download');
             btn.disabled = false;
+            hitStat('downloads', 'stat-downloads');
             showMessage('thanksDownload');
         }
 
@@ -275,7 +304,10 @@
 
     copyBtn.addEventListener('click', function () {
         var text = loader.textContent.trim();
-        var onResult = function (ok) { showMessage(ok ? 'thanksCopy' : 'copyFail'); };
+        var onResult = function (ok) {
+            if (ok) hitStat('copies', 'stat-copies');
+            showMessage(ok ? 'thanksCopy' : 'copyFail');
+        };
         if (navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard.writeText(text).then(
                 function () { onResult(true); },
